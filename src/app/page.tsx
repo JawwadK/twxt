@@ -6,7 +6,7 @@ import { AuthLayout } from "@/components/layout/AuthLayout";
 import { TweetList } from "@/components/tweet/TweetList";
 import { UserProfile } from "@/components/profile/UserProfile";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import ThemeProvider from "@/components/ThemeProvider";
+import ThemeProvider  from "@/components/ThemeProvider";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);

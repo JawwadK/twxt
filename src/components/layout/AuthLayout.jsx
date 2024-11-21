@@ -1,10 +1,10 @@
+// components/layout/AuthLayout.jsx
 "use client";
 
 import React, { useState } from 'react';
 import { LoginForm } from '../auth/LoginForm';
 import { SignupForm } from '../auth/SignupForm';
-
-import Image from 'next/image';
+import { Logo } from '@/components/ui/logo';
 
 export const AuthLayout = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -12,13 +12,7 @@ export const AuthLayout = ({ onLogin }) => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 animate-in fade-in">
       <div className="mb-8 flex flex-col items-center">
-        <Image 
-          src="/logo.svg" 
-          alt="Logo" 
-          width={64} 
-          height={64} 
-          className="logo-large mb-4"
-        />
+        <Logo className="w-16 h-16 mb-4" />
         <h1 className="text-3xl font-bold">Welcome to Tweeter</h1>
       </div>
       <div className="w-full max-w-md">

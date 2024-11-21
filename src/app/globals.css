@@ -76,3 +76,26 @@
     @apply flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors;
   }
 }
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    /* ... other light mode variables ... */
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    /* ... other dark mode variables ... */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

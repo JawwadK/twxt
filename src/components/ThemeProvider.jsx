@@ -1,15 +1,17 @@
-import { useEffect } from 'react';
+// components/ThemeProvider.jsx
+"use client";
 
-const ThemeProvider = ({ darkMode, children }) => {
+import { useEffect } from "react";
+
+function ThemeProvider({ children, darkMode }) {
+  // Update class when component mounts and when darkMode changes
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
+    if (typeof window !== 'undefined') {
+      document.documentElement.classList.toggle('dark', darkMode);
     }
   }, [darkMode]);
 
   return children;
-};
+}
 
 export default ThemeProvider;
