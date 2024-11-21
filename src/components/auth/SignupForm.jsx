@@ -25,9 +25,10 @@ export const SignupForm = ({ onSignup, onShowLogin }) => {
       username,
       password,
       displayName,
-      bio,
-      location,
-      website,
+      // Only include optional fields if they have content
+      ...(bio && { bio }),
+      ...(location && { location }),
+      ...(website && { website }),
       avatar: displayName[0].toUpperCase(),
       followers: [],
       following: [],
@@ -63,18 +64,18 @@ export const SignupForm = ({ onSignup, onShowLogin }) => {
             required
           />
           <Textarea
-            placeholder="Bio"
+            placeholder="Bio (optional)"
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             maxLength={160}
           />
           <Input
-            placeholder="Location"
+            placeholder="Location (optional)"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
           <Input
-            placeholder="Website"
+            placeholder="Website (optional)"
             value={website}
             onChange={(e) => setWebsite(e.target.value)}
             type="url"

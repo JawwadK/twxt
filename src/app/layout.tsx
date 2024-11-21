@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     icon: [
       {
         media: "(prefers-color-scheme: light)",
-        url: "/logo-light.svg",
-        href: "/logo-light.svg",
+        url: "/twxt-logo.png",
+        href: "/twxt-logo.png",
       },
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/logo-dark.svg",
-        href: "/logo-dark.svg",
+        url: "/twxt-logo.png",
+        href: "/twxt-logo.png",
       },
     ],
   },

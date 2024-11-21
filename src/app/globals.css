@@ -4,91 +4,115 @@
 @tailwind utilities;
 
 @layer base {
-  /* Keep your existing CSS variables */
-
-  /* Add new utility classes */
-  .logo-small {
-    @apply w-8 h-8;
-  }
-
-  .logo-medium {
-    @apply w-12 h-12;
-  }
-
-  .logo-large {
-    @apply w-16 h-16;
-  }
-
-  /* Enhanced typography */
-  h1 {
-    @apply text-2xl font-bold tracking-tight;
-  }
-
-  h2 {
-    @apply text-xl font-semibold tracking-tight;
-  }
-
-  /* Custom animations */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .fade-in {
-    animation: fadeIn 0.3s ease-out;
-  }
-
-  /* Enhanced card styling */
-  .card {
-    @apply rounded-lg border bg-card text-card-foreground shadow-sm transition-shadow hover:shadow-md;
-  }
-
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    @apply w-2;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-secondary;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-muted-foreground/50 rounded-full;
-  }
-
-  /* Enhanced focus styles */
-  *:focus-visible {
-    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
-  }
-}
-
-/* Custom components */
-@layer components {
-  .nav-link {
-    @apply px-4 py-2 rounded-md hover:bg-accent transition-colors;
-  }
-
-  .avatar {
-    @apply rounded-full bg-secondary flex items-center justify-center font-semibold transition-colors;
-  }
-
-  .tweet-action {
-    @apply flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors;
-  }
-}
-
-@layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    /* ... other light mode variables ... */
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+ 
+    /* Primary brand color - a vibrant blue */
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 40% 98%;
+ 
+    /* Secondary color - subtle gray */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    /* Muted elements */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    /* Accents */
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    /* Destructive actions */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border and input colors */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 217 91% 60%;
+ 
+    --radius: 0.75rem;
+  }
+ 
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+ 
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+ 
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+ 
+    /* Darker theme primary - still vibrant but softer */
+    --primary: 217 91% 60%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    /* Darker secondary */
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    /* Darker muted elements */
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+ 
+    /* Darker accents */
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+ 
+    /* Destructive stays relatively bright for visibility */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Darker borders and inputs */
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 216 91% 60%;
+  }
+}
+
+/* Add some nice gradients and transitions */
+@layer utilities {
+  .bg-gradient {
+    @apply bg-gradient-to-r from-blue-500 to-blue-600;
   }
 
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    /* ... other dark mode variables ... */
+  .hover-gradient {
+    @apply hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700;
   }
+}
+
+/* Enhanced card styling */
+.card {
+  @apply rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md;
+}
+
+/* Enhanced button styling */
+.btn-primary {
+  @apply bg-primary text-primary-foreground hover:opacity-90 transition-opacity;
+}
+
+/* Add smooth transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Enhance the sidebar */
+.sidebar {
+  @apply bg-background border-r border-border;
+}
+
+/* Add some depth to the header */
+.header {
+  @apply bg-background/80 backdrop-blur-sm border-b border-border;
 }
 
 @layer base {
@@ -98,4 +122,17 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/50 rounded-full hover:bg-primary/70;
 }

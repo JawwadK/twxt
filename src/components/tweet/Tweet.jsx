@@ -1,9 +1,9 @@
+// components/tweet/Tweet.jsx
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Heart, MessageCircle, Send } from 'lucide-react';
-import { LinkPreview } from './LinkPreview';
 import { UserNameLink } from '@/components/profile/UserNameLink';
 
 export const Tweet = ({ 
@@ -11,10 +11,30 @@ export const Tweet = ({
   currentUser, 
   onLike, 
   onComment,
-  onUserClick  // Add this new prop
+  onUserClick
 }) => {
   const [comment, setComment] = useState('');
   const [showComments, setShowComments] = useState(false);
+
+  const makeLinksClickable = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.split(urlRegex).map((part, i) => {
+      if (part.match(urlRegex)) {
+        return (
+          <a 
+            key={i}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline break-all"
+          >
+            {part}
+          </a>
+        );
+      }
+      return part;
+    });
+  };
 
   const handleComment = () => {
     if (!comment.trim()) return;
@@ -26,16 +46,14 @@ export const Tweet = ({
     <Card className="mb-4">
       <CardContent className="pt-4">
         <div className="flex items-start gap-3">
-          {/* Author Avatar - Make it clickable */}
           <button 
             onClick={() => onUserClick(tweet.authorUsername)}
-            className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center hover:bg-muted"
+            className="h-10 w-10 shrink-0 rounded-full bg-secondary flex items-center justify-center hover:bg-muted"
           >
             {tweet.authorAvatar}
           </button>
 
-          <div className="flex-1">
-            {/* Author Info - Replace with UserNameLink */}
+          <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <UserNameLink
                 username={tweet.authorUsername}
@@ -47,8 +65,9 @@ export const Tweet = ({
               </span>
             </div>
 
-            {/* Rest of the component stays the same */}
-            <p className="mt-1">{tweet.content}</p>
+            <p className="mt-1 break-words whitespace-pre-wrap">
+              {makeLinksClickable(tweet.content)}
+            </p>
             
             {tweet.image && (
               <img 
@@ -57,7 +76,6 @@ export const Tweet = ({
                 className="mt-2 rounded-lg max-h-96 object-contain bg-secondary"
               />
             )}
-            {tweet.url && <LinkPreview url={tweet.url} />}
             
             <div className="flex items-center gap-6 mt-4">
               <button 
@@ -97,21 +115,21 @@ export const Tweet = ({
                 {tweet.comments.map((comment, i) => (
                   <div key={i} className="p-2 bg-secondary rounded mb-2">
                     <div className="flex items-center gap-2">
-                      {/* Make comment author avatar clickable */}
                       <button 
                         onClick={() => onUserClick(comment.authorUsername)}
-                        className="h-6 w-6 rounded-full bg-muted flex items-center justify-center text-sm hover:bg-muted/80"
+                        className="h-6 w-6 shrink-0 rounded-full bg-muted flex items-center justify-center text-sm hover:bg-muted/80"
                       >
                         {comment.authorAvatar}
                       </button>
-                      {/* Replace comment author name with UserNameLink */}
                       <UserNameLink
                         username={comment.authorUsername}
                         displayName={comment.authorDisplayName}
                         onClick={onUserClick}
                       />
                     </div>
-                    <p className="ml-8 text-sm">{comment.content}</p>
+                    <p className="ml-8 text-sm break-words whitespace-pre-wrap">
+                      {makeLinksClickable(comment.content)}
+                    </p>
                   </div>
                 ))}
               </div>

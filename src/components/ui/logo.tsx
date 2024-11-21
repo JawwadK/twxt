@@ -14,22 +14,34 @@ export const Logo = ({ className }: LogoProps) => {
       className={cn("shrink-0", className)}
       aria-label="Twxt Logo"
     >
+      {/* Background circle */}
       <circle
         cx="256"
         cy="256"
         r="256"
         className="fill-black dark:fill-white"
       />
+
+      {/* Rounded T */}
       <g className="fill-white dark:fill-black">
-        <path d="M 180 140 L 332 140 L 332 180 L 276 180 L 276 372 L 236 372 L 236 180 L 180 180 Z" />
+        {/* Horizontal bar of T with rounded ends */}
         <path
-          d="M 150 160 Q 120 200, 140 240 Q 160 280, 140 320 L 160 330 Q 180 290, 160 250 Q 140 210, 160 170 Z"
-          className="opacity-80"
-        />
-        <path
-          d="M 362 160 Q 392 200, 372 240 Q 352 280, 372 320 L 352 330 Q 332 290, 352 250 Q 372 210, 352 170 Z"
-          className="opacity-80"
-          transform="scale(-1, 1) translate(-512, 0)"
+          d="
+          M 140 160 
+          A 20 20 0 0 1 160 140 
+          L 352 140 
+          A 20 20 0 0 1 372 160
+          L 372 200
+          A 20 20 0 0 1 352 220
+          L 276 220 
+          L 276 352
+          A 20 20 0 0 1 256 372
+          L 236 372
+          A 20 20 0 0 1 216 352
+          L 216 220
+          L 160 220
+          A 20 20 0 0 1 140 200
+          Z"
         />
       </g>
     </svg>

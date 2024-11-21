@@ -15,6 +15,7 @@ export default function Home() {
   const [darkMode, setDarkMode] = useLocalStorage("darkMode", false);
   const [users, setUsers] = useLocalStorage("users", []);
   const [currentProfile, setCurrentProfile] = useState(null);
+  const [currentView, setCurrentView] = useState("home");
 
   // Add this right after your useLocalStorage hooks
   useEffect(() => {
@@ -128,14 +129,56 @@ export default function Home() {
     const updatedUser = updatedUsers.find((u) => u.username === user.username);
     setUser(updatedUser);
   };
+  const handleNavigate = (view) => {
+    if (view === "profile") {
+      setCurrentProfile(user.username);
+    } else if (view === "home") {
+      setCurrentProfile(null);
+    }
+    setCurrentView(view);
+  };
 
   if (!user) {
     return <AuthLayout onLogin={setUser} />;
   }
 
-  const profileUser = currentProfile
-    ? users.find((u) => u.username === currentProfile)
-    : null;
+  const getMainContent = () => {
+    switch (currentView) {
+      case "home":
+        return (
+          <TweetList
+            tweets={tweets}
+            currentUser={user}
+            onTweetSubmit={handleTweetSubmit}
+            onLike={handleLike}
+            onComment={handleComment}
+            onUserClick={setCurrentProfile}
+          />
+        );
+      case "notifications":
+        return (
+          <div className="p-4 text-center text-muted-foreground">
+            Notifications feature coming soon!
+          </div>
+        );
+      case "profile":
+        const profileUser = users.find((u) => u.username === user.username);
+        return (
+          <UserProfile
+            profileUser={profileUser}
+            currentUser={user}
+            tweets={tweets}
+            onFollow={handleFollow}
+            onLike={handleLike}
+            onComment={handleComment}
+            onBack={() => handleNavigate("home")}
+            onUserClick={setCurrentProfile}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <ThemeProvider darkMode={darkMode}>
@@ -147,10 +190,12 @@ export default function Home() {
           setUser(null);
           setCurrentProfile(null);
         }}
+        currentView={currentView}
+        onNavigate={handleNavigate}
       >
-        {currentProfile && profileUser ? (
+        {currentProfile && currentView !== "profile" ? (
           <UserProfile
-            profileUser={profileUser}
+            profileUser={users.find((u) => u.username === currentProfile)}
             currentUser={user}
             tweets={tweets}
             onFollow={handleFollow}
@@ -160,14 +205,7 @@ export default function Home() {
             onUserClick={setCurrentProfile}
           />
         ) : (
-          <TweetList
-            tweets={tweets}
-            currentUser={user}
-            onTweetSubmit={handleTweetSubmit}
-            onLike={handleLike}
-            onComment={handleComment}
-            onUserClick={setCurrentProfile}
-          />
+          getMainContent()
         )}
       </MainLayout>
     </ThemeProvider>
