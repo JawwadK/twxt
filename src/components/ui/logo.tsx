@@ -18,9 +18,9 @@ export const Logo = ({ className }: LogoProps) => {
         cx="256"
         cy="256"
         r="256"
-        className="dark:fill-background fill-primary"
+        className="fill-black dark:fill-white"
       />
-      <g className="dark:fill-primary fill-background">
+      <g className="fill-white dark:fill-black">
         <path d="M 180 140 L 332 140 L 332 180 L 276 180 L 276 372 L 236 372 L 236 180 L 180 180 Z" />
         <path
           d="M 150 160 Q 120 200, 140 240 Q 160 280, 140 320 L 160 330 Q 180 290, 160 250 Q 140 210, 160 170 Z"
