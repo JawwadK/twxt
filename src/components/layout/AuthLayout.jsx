@@ -13,7 +13,7 @@ export const AuthLayout = ({ onLogin }) => {
     <div className="min-h-screen flex flex-col items-center justify-center p-4 animate-in fade-in">
       <div className="mb-8 flex flex-col items-center">
         <Logo className="w-16 h-16 mb-4" />
-        <h1 className="text-3xl font-bold">Welcome to Tweeter</h1>
+        <h1 className="text-3xl font-bold">Welcome to Twxt</h1>
       </div>
       <div className="w-full max-w-md">
         {isLogin ? (

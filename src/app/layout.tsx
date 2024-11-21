@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Tweeter",
+  title: "Twxt",
   description: "A modern social media platform",
   icons: {
     icon: [
