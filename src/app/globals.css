@@ -136,3 +136,31 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-primary/50 rounded-full hover:bg-primary/70;
 }
+/* Add to your globals.css */
+
+@keyframes gradient-slide {
+  0% {
+    transform: translateX(-60px) translateY(-60px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes gradient-slide-inverse {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(-60px) translateY(-60px);
+  }
+}
+
+@layer utilities {
+  .animate-gradient-slide {
+    animation: gradient-slide 3s linear infinite;
+  }
+  .animate-gradient-slide-inverse {
+    animation: gradient-slide-inverse 3s linear infinite;
+  }
+}

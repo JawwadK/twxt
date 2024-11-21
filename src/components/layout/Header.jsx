@@ -3,14 +3,10 @@
 
 import { Button } from '@/components/ui/button';
 import { LogOut, Sun, Moon } from 'lucide-react';
-import { Logo } from '@/components/ui/logo';
 
 export const Header = ({ user, darkMode, onThemeToggle, onLogout }) => (
-  <div className="flex justify-between items-center mb-6 p-4 border-b animate-in fade-in">
-    <div className="flex items-center gap-3">
-      <Logo className="w-8 h-8" />
-      <h1 className="text-2xl font-bold">Welcome, {user.displayName}</h1>
-    </div>
+  <div className="flex justify-between items-center mb-6 p-4 border-b backdrop-blur-sm bg-background/50">
+    <h1 className="text-2xl font-bold">Welcome, {user.displayName}</h1>
     <div className="flex gap-2">
       <Button 
         variant="outline" 
