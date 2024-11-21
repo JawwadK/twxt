@@ -41,14 +41,14 @@ export const LoginForm = ({ onLogin, onShowSignup }) => {
         </form>
         
         <p className="text-center mt-4">
-          Don't have an account?{' '}
-          <button 
-            onClick={onShowSignup}
-            className="text-blue-500 hover:underline"
-          >
-            Sign up
-          </button>
-        </p>
+  Don&apos;t have an account?{' '}
+  <button 
+    onClick={onShowSignup}
+    className="text-blue-500 hover:underline"
+  >
+    Sign up
+  </button>
+</p>
       </CardContent>
     </Card>
   );

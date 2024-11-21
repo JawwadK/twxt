@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Image as ImageIcon, X } from 'lucide-react';
+import { Image } from 'lucide-react'; 
 import { ImagePreview } from './ImagePreview';
 import { cn } from '@/lib/utils';
 
@@ -89,7 +89,7 @@ export const TweetComposer = ({ user, onTweetSubmit }) => {
                   htmlFor="image-upload" 
                   className="p-2 hover:bg-secondary rounded-full cursor-pointer transition-colors"
                 >
-                  <ImageIcon size={20} className="text-primary" />
+                  <Image size={20} className="text-primary" alt="Add image" /> 
                 </label>
               </div>
 

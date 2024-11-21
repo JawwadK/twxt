@@ -1,6 +1,7 @@
 // components/tweet/ImagePreview.jsx
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
+import Image from 'next/image';
 
 export const ImagePreview = ({ file, onRemove }) => {
   const [preview, setPreview] = useState('');
@@ -19,10 +20,12 @@ export const ImagePreview = ({ file, onRemove }) => {
 
   return (
     <div className="relative mt-2">
-      <img 
+      <Image 
         src={preview} 
         alt="Preview" 
         className="rounded-lg max-h-96 object-contain bg-secondary"
+        width={400}
+        height={400}
       />
       <button
         onClick={onRemove}

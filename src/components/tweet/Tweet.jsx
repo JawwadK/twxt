@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Heart, MessageCircle, Send } from 'lucide-react';
 import { UserNameLink } from '@/components/profile/UserNameLink';
+import Image from 'next/image';
 
 export const Tweet = ({ 
   tweet, 
@@ -68,14 +69,15 @@ export const Tweet = ({
             <p className="mt-1 break-words whitespace-pre-wrap">
               {makeLinksClickable(tweet.content)}
             </p>
-            
-            {tweet.image && (
-              <img 
-                src={tweet.image} 
-                alt="Tweet image" 
-                className="mt-2 rounded-lg max-h-96 object-contain bg-secondary"
-              />
-            )}
+{tweet.image && (
+  <Image 
+    src={tweet.image} 
+    alt="Tweet image" 
+    className="mt-2 rounded-lg max-h-96 object-contain bg-secondary"
+    width={400}
+    height={400}
+  />
+)}
             
             <div className="flex items-center gap-6 mt-4">
               <button 
